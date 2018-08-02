@@ -12,7 +12,6 @@ router.post('/send/fls-registration', function(req, res, next) {
     email: req.body.email,
     fullname: req.body.fullname,
     roomFirst: req.body.roomFirst,
-    roomFirst: req.body.roomFirst,
     nickname: req.body.nickname,
   });
   res.status(201).send({sending: true});
