@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 require('dotenv').config()
 
+require('./lib/agenda.js');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
