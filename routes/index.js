@@ -8,13 +8,34 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/send/fls-registration', function(req, res, next) {
-  agenda.now('fls registration', {
-    email: req.body.email,
-    fullname: req.body.fullname,
-    roomFirst: req.body.roomFirst,
-    nickname: req.body.nickname,
-  });
-  res.status(201).send({sending: true});
+  try {
+    if (req.body.secret != process.env.SECRET) {
+      res.status(401).send({ message: 'wrong secret' })
+    } else if (req.body.emailList) {
+      let emailList = JSON.parse(req.body.emailList)
+      console.log('bulk email', emailList);
+
+      emailList.forEach(element => {
+        agenda.now('fls registration', {
+          email: element.email,
+          fullname: element.fullname,
+          roomFirst: element.roomFirst,
+          nickname: element.nickname,
+        });
+      });
+      res.status(201).send({ sending: true, list: emailList });
+    } else {
+      agenda.now('fls registration', {
+        email: req.body.email,
+        fullname: req.body.fullname,
+        roomFirst: req.body.roomFirst,
+        nickname: req.body.nickname,
+      });
+      res.status(201).send({ sending: true });
+    }
+  } catch (error) {
+    res.status(500).send({ message: 'unexpected error ' + error })
+  }
 })
 
 module.exports = router;
