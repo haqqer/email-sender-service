@@ -4,13 +4,24 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
+var Agendash = require('agendash');
 
 require('dotenv').config()
 
-require('./lib/agenda.js');
-
+// require('./lib/agenda.js');
+const agenda = require('./lib/agenda.js');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+
+const pass = process.env.SECRET || 'pass'
+
+const dashMiddleware = (req, res, next) => {
+  if (req.params.pass == pass) {
+    next()
+  } else {
+    res.send('dilarang masuk')
+  }
+}
 
 var app = express();
 
@@ -24,6 +35,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/dash/:pass', dashMiddleware, Agendash(agenda));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
