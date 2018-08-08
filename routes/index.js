@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.post('/send/fls-registration', function(req, res, next) {
+router.post('/send/fls-email', function(req, res, next) {
   try {
     if (req.body.secret != process.env.SECRET) {
       res.status(401).send({ message: 'wrong secret' })
@@ -16,7 +16,7 @@ router.post('/send/fls-registration', function(req, res, next) {
       console.log('bulk email', emailList);
 
       emailList.forEach(element => {
-        agenda.now('fls registration', {
+        agenda.now(req.body.jobName, {
           email: element.email,
           fullname: element.fullname,
           roomFirst: element.roomFirst,
@@ -25,7 +25,7 @@ router.post('/send/fls-registration', function(req, res, next) {
       });
       res.status(201).send({ sending: true, list: emailList });
     } else {
-      agenda.now('fls registration', {
+      agenda.now(req.body.jobName, {
         email: req.body.email,
         fullname: req.body.fullname,
         roomFirst: req.body.roomFirst,
@@ -34,7 +34,7 @@ router.post('/send/fls-registration', function(req, res, next) {
       res.status(201).send({ sending: true });
     }
   } catch (error) {
-    res.status(500).send({ message: 'unexpected error ' + error })
+    res.status(500).send({ message: 'unexpected error ', data: error })
   }
 })
 
