@@ -3,6 +3,6 @@ const { home, email } = require('../controllers')
 
 /* GET home page. */
 router.get('/', home.hello);
-router.post('/', email.sendOne);
+router.post('/single', email.sendOne);
 
 module.exports = router;
