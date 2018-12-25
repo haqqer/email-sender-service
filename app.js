@@ -9,16 +9,6 @@ require('dotenv').config()
 
 var routes = require('./routes');
 
-const pass = process.env.SECRET || 'pass'
-
-const dashMiddleware = (req, res, next) => {
-  if (req.params.pass == pass) {
-    next()
-  } else {
-    res.send('dilarang masuk')
-  }
-}
-
 var app = express();
 
 // view engine setup
