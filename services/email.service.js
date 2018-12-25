@@ -5,7 +5,7 @@ const mailgun = require('mailgun-js')({ apiKey, domain })
 
 const sendOne = async ({ to, subject, html }) => {
   const data = {
-    from: 'Melody from Nusantara Muda <melody@nusantaramuda.org>',
+    from: process.env.MAILGUN_EMAIL_SENDER,
     to,
     subject,
     html
@@ -19,7 +19,6 @@ const sendOne = async ({ to, subject, html }) => {
     console.log('xxx error \n', error)
     return error
   }
-
 }
 
 module.exports = {
