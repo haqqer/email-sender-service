@@ -11,7 +11,6 @@ require('dotenv').config()
 // require('./lib/agenda.js');
 const agenda = require('./lib/agenda.js');
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 
 const pass = process.env.SECRET || 'pass'
 
@@ -39,7 +38,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/dash/:pass', dashMiddleware, Agendash(agenda));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
