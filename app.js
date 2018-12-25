@@ -4,13 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
-var Agendash = require('agendash');
 
 require('dotenv').config()
 
-// require('./lib/agenda.js');
-const agenda = require('./lib/agenda.js');
-var indexRouter = require('./routes/index');
+var routes = require('./routes');
 
 const pass = process.env.SECRET || 'pass'
 
@@ -35,9 +32,7 @@ app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/dash/:pass', dashMiddleware, Agendash(agenda));
-
-app.use('/', indexRouter);
+app.use('/', routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

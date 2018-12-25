@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-const agenda = require('../lib/agenda');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -16,21 +15,9 @@ router.post('/send/fls-email', function(req, res, next) {
       console.log('bulk email', emailList);
 
       emailList.forEach(element => {
-        agenda.now(req.body.jobName, {
-          email: element.email,
-          fullname: element.fullname,
-          roomFirst: element.roomFirst,
-          nickname: element.nickname,
-        });
       });
       res.status(201).send({ sending: true, list: emailList });
     } else {
-      agenda.now(req.body.jobName, {
-        email: req.body.email,
-        fullname: req.body.fullname,
-        roomFirst: req.body.roomFirst,
-        nickname: req.body.nickname,
-      });
       res.status(201).send({ sending: true });
     }
   } catch (error) {
