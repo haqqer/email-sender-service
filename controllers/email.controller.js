@@ -1,5 +1,8 @@
+const { email } = require('../services')
+
 const sendOne = (req, res) => {
-  res.json('email send one')
+  const response = email.sendOne()
+  res.json(response)
 }
 
 module.exports = {
