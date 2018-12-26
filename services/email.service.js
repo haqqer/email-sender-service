@@ -1,5 +1,5 @@
 const mailgun = require('../plugins/mailgun')
-const DeliveryEvent = require('../models/DeliveryEvent')
+const Tracking = require('../models/Tracking')
 
 const sendOne = async ({ to, subject, html }) => {
   const data = {
@@ -19,8 +19,8 @@ const sendOne = async ({ to, subject, html }) => {
   }
 }
 
-const onDelivered = async (signature, data) => {
-  DeliveryEvent.create({
+const onTracking = async (signature, data) => {
+  Tracking.create({
     signature,
     data
   }).then(() => {
@@ -32,5 +32,5 @@ const onDelivered = async (signature, data) => {
 
 module.exports = {
   sendOne,
-  onDelivered
+  onTracking
 }
