@@ -4,12 +4,24 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
+let mongoose = require('mongoose');
 
 require('dotenv').config()
 
 const routes = require('./routes');
 
 const app = express();
+
+// koneksi mongo
+let mongoUrl = process.env.MONGO_STRING || 'mongodb://localhost:27017/emailService'
+mongoose.Promise = global.Promise;
+mongoose.connect(mongoUrl, { useNewUrlParser: true }, function (err) {
+  if (err) {
+    console.log(err)
+  } else {
+    console.log('mongo connected', mongoUrl)
+  }
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

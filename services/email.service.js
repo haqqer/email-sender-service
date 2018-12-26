@@ -1,4 +1,5 @@
 const mailgun = require('../plugins/mailgun')
+const DeliveryEvent = require('../models/DeliveryEvent')
 
 const sendOne = async ({ to, subject, html }) => {
   const data = {
@@ -18,8 +19,15 @@ const sendOne = async ({ to, subject, html }) => {
   }
 }
 
-const onDelivered = async () => {
-  return true
+const onDelivered = async (signature, data) => {
+  DeliveryEvent.create({
+    signature,
+    data
+  }).then(() => {
+    return true
+  }).catch(() => {
+    return false
+  })
 }
 
 module.exports = {
