@@ -2,7 +2,7 @@ const mailgun = require('../plugins/mailgun')
 const Tracking = require('../models/Tracking')
 const { objectKeysToCamelCase } = require('../utils')
 
-const sendOne = async ({ to, subject, html }) => {
+const send = async ({ to, subject, html }) => {
   const data = {
     from: process.env.MAILGUN_EMAIL_SENDER,
     to,
@@ -32,6 +32,6 @@ const onTracking = async (payload) => {
 }
 
 module.exports = {
-  sendOne,
+  send,
   onTracking
 }
