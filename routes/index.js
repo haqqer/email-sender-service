@@ -1,10 +1,10 @@
 const router = require('express').Router();
-const { home, delivery, webhook } = require('../controllers')
+const { home, delivery, tracking } = require('../controllers')
 
 /* GET home page. */
 router.get('/', home.hello);
-router.post('/delivery', delivery.send);
 
-router.post('/webhook/tracking', webhook.tracking);
+router.post('/delivery', delivery.send);
+router.post('/webhook/tracking', tracking.handleEvent);
 
 module.exports = router;
