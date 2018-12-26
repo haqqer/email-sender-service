@@ -1,3 +1,6 @@
+const Tracking = require('../models/Tracking')
+const { objectKeysToCamelCase } = require('../utils')
+
 const handleEvent = async (payload) => {
   const data = objectKeysToCamelCase(payload)
   Tracking.create({

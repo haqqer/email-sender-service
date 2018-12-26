@@ -1,6 +1,4 @@
 const mailgun = require('../plugins/mailgun')
-const Tracking = require('../models/Tracking')
-const { objectKeysToCamelCase } = require('../utils')
 
 const send = async ({ to, subject, html }) => {
   to = to.replace(/\s+/g, ''); // remove every space
