@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const { home, email, webhook } = require('../controllers')
+const { home, delivery, webhook } = require('../controllers')
 
 /* GET home page. */
 router.get('/', home.hello);
-router.post('/delivery', email.send);
+router.post('/delivery', delivery.send);
 
 router.post('/webhook/tracking', webhook.tracking);
 

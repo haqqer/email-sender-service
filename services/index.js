@@ -1,5 +1,5 @@
-const email = require('./email.service')
+const delivery = require('./delivery.service')
 
 module.exports = {
-  email
+  delivery
 }

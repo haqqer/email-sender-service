@@ -1,7 +1,7 @@
-const { email } = require('../services')
+const { delivery } = require('../services')
 
 const tracking = (req, res) => {
-  const isSuccess = email.onTracking(req.body)
+  const isSuccess = delivery.onTracking(req.body)
   if (isSuccess) {
     res.send('ok')
   }
