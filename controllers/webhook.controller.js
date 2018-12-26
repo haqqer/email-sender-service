@@ -1,10 +1,7 @@
 const { email } = require('../services')
 
 const tracking = (req, res) => {
-  const signature = req.body.signature
-  const data = req.body['event-data']
-
-  const isSuccess = email.onTracking(signature, data)
+  const isSuccess = email.onTracking(req.body)
   if (isSuccess) {
     res.send('ok')
   }

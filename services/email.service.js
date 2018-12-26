@@ -1,5 +1,6 @@
 const mailgun = require('../plugins/mailgun')
 const Tracking = require('../models/Tracking')
+const { objectKeysToCamelCase } = require('../utils')
 
 const sendOne = async ({ to, subject, html }) => {
   const data = {
@@ -19,9 +20,9 @@ const sendOne = async ({ to, subject, html }) => {
   }
 }
 
-const onTracking = async (signature, data) => {
+const onTracking = async (payload) => {
+  const data = objectKeysToCamelCase(payload)
   Tracking.create({
-    signature,
     data
   }).then(() => {
     return true
