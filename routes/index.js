@@ -5,6 +5,6 @@ const { home, email, webhook } = require('../controllers')
 router.get('/', home.hello);
 router.post('/single', email.sendOne);
 
-router.post('/webhook/nusantaramuda.org/delivered', webhook.onDelivered);
+router.post('/webhook/nusantaramuda.org/delivered', webhook.delivered);
 
 module.exports = router;

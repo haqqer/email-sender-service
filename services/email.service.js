@@ -18,6 +18,11 @@ const sendOne = async ({ to, subject, html }) => {
   }
 }
 
+const onDelivered = async () => {
+  return true
+}
+
 module.exports = {
-  sendOne
+  sendOne,
+  onDelivered
 }

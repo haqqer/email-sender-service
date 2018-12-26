@@ -1,8 +1,12 @@
-const onDelivered = (req, res) => {
-  console.log('----------- ini webhook delivered --------------\n\n', req.body)
-  res.send('ok')
+const { email } = require('../services')
+
+const delivered = (req, res) => {
+  const isSuccess = email.onDelivered(req.body)
+  if (isSuccess) {
+    res.send('ok')
+  }
 }
 
 module.exports = {
-  onDelivered
+  delivered
 }
