@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const { tracking } = require('./controllers')
 const delivery = require('./lib/delivery/delivery.controller')
+const tracking = require('./lib/tracking/tracking.controller')
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
