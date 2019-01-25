@@ -8,7 +8,7 @@ let mongoose = require('mongoose');
 
 require('dotenv').config()
 
-const routes = require('./routes');
+const routes = require('./app.route');
 
 const app = express();
 
