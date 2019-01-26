@@ -1,8 +1,8 @@
 # Email sender service by creative fls
 
 # requirement
-- node v8
-- mongo 3.6
+- node v8+
+- mongo 3.6+
 
 # How to run
 - clone this repo
