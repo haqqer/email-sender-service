@@ -8,8 +8,6 @@ let mongoose = require('mongoose')
 
 require('dotenv').config()
 
-const routes = require('./app.route')
-
 const app = express()
 
 // koneksi mongo
@@ -34,7 +32,7 @@ app.use(express.urlencoded({ limit: '50mb', extended: true }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.use('/', routes)
+require('./start/routes')(app)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
