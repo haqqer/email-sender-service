@@ -4,10 +4,19 @@ require('dotenv').config()
 
 const app = express()
 
-require('./start/db')(app)
-require('./start/view')(app)
-require('./start/middleware')(app)
-require('./start/routes')(app)
-require('./start/error')(app)
+/*
+  register here from directory ./start
+  place in order. first order will first execute
+*/
+const starts = [
+  'db',
+  'view',
+  'middleware',
+  'routes',
+  'error'
+]
+starts.forEach(s => {
+  require('./start/' + s)(app)
+})
 
 module.exports = app
