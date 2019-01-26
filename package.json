@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "standard && nodemon ./bin/www",
+    "dev": "nodemon ./bin/www --exec \"npm run lint && node\"",
     "lint": "standard",
     "lint:fix": "standard --fix"
   },
