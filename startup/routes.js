@@ -1,6 +1,6 @@
 const delivery = require('../lib/delivery/delivery.route')
 const tracking = require('../lib/tracking/tracking.route')
-const emailTemplate = require('../lib/tracking/email_template.route')
+const emailTemplate = require('../lib/email_template/email_template.route')
 
 module.exports = function (app) {
   app.use('/deliveries', delivery)
